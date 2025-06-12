@@ -292,7 +292,6 @@ class Dom extends test_IU {
 		let columna = document.createElement('td');
 		let opcion = document.createElement('img');
 		const body = document.body;
-		const isDarkMode = body.classList.contains('darkmode');
 
 		opcion.src = `./iconos/` + accion + `.png`;
 
