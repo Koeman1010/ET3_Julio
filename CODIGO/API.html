@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title class="text_titulo_app_api"></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="./css/IU.css" media="screen" />
+
+
+    <!-- ficheros de idiomas -->
+    <script type="text/javascript" src="./locale/idioma.js"></script>
+    <script type="text/javascript" src="./js_app/Textos_ES.js"></script>
+    <script type="text/javascript" src="./js_app/Textos_EN.js"></script>
+
+    <script type="text/javascript" src="./js_app/API_Estructura.js"></script>
+
+</head>
+
+<body onload="">
+
+    <header id='header_page' class='bordeado'>
+
+        <nav class="navbar">
+            <img id="botonMENU" src="./iconos/MENU.png" onclick="menu_work();"
+                onmouseover="changeOnMouseOver(true, 'MENU');" onmouseout="changeOnMouseOver(false, 'MENU');" />
+        </nav>
+
+        <aside id='div-menu'>
+            <h2 class="text_titulo_menu"></h2>
+            <ol class="no-style">
+                <li class="opcionmenu"><span class="opt_funciones_test" onclick="showAPI('test'); menu_work();"></span>
+                </li>
+                <li class="opcionmenu"><span class="opt_funciones_form" onclick="showAPI('form'); menu_work();"></span>
+                </li>
+                <li class="opcionmenu"><span class="opt_funciones_tabla"
+                        onclick="showAPI('tabla'); menu_work();"></span></li>
+                <li class="opcionmenu"><span class="opt_funciones_valid"
+                        onclick="showAPI('validaciones'); menu_work();"></span></li>
+                <li class="opcionmenu"><span class="opt_funciones_other"
+                        onclick="showAPI('other'); menu_work();"></span></li>
+            </ol>
+
+        </aside>
+
+        <spam class="text_titulo_API"></spam>
+
+        <div class="opciones">
+            <a href="index.html" class="conjuntoINDEX">
+                <img id="botonHOME" src="./iconos/HOME.png" />
+                <span class="pagina_principal"></span>
+            </a>
+        </div>
+
+
+        <div id="languageToggle" onclick="toggleLanguage()" style="cursor: pointer;">
+            <img id="languageFlag" src="./iconos/United-Kingdom.png" alt="English" />
+            <span id="languageText">ENG</span>
+        </div>
+
+
+    </header>
+
+    <!-- Botón de Volver al Menú (inicialmente oculto) -->
+    <div id="botonVolverMenu"
+        style="display: none; align-items: center; justify-content: center; gap: 10px; margin-top: 10px;">
+
+        <img id="botonBACK3" src="./iconos/BACK.png" onclick="volverAlMenuAPI();"
+            onmouseover="changeOnMouseOver(true, 'BACK', '3'); changeTextColorHover(true, this.nextElementSibling);"
+            onmouseout="changeOnMouseOver(false, 'BACK', '3'); changeTextColorHover(false, this.nextElementSibling);"
+            style="cursor: pointer;" />
+
+        <span onclick="volverAlMenuAPI();"
+            onmouseover="changeOnMouseOver(true, 'BACK', '3'); changeTextColorHover(true, this);"
+            onmouseout="changeOnMouseOver(false, 'BACK', '3'); changeTextColorHover(false, this);"
+            style="font-size: 1rem; font-weight: bold; cursor: pointer; transition: color 0.3s ease;">
+            Volver al menú principal
+        </span>
+    </div>
+
+    <div id="structInfo">
+        <p id="InfoText" class="InfoTextAPI1"></p>
+        <p class="InfoTextAPI2"></p>
+    </div>
+    </div>
+
+
+
+    <footer id='footer_page'>
+        <spam class="text_titulo_pie"></spam>
+    </footer>
+
+    <script type="text/javascript">
+
+        function evento(event) {
+            const menu = document.getElementById('div-menu');
+            const menuToggleButton = document.getElementById('botonMENU');
+
+            // Si el clic no fue dentro del menú ni en el botón para abrir el menú, cerramos el menú
+            if (!menu.contains(event.target) && event.target !== menuToggleButton) {
+                menu_work();
+            }
+        }
+
+        function menu_work() {
+            if (document.getElementById('div-menu').style.display == 'none') {
+                document.getElementById('div-menu').style.display = 'block';
+                // Cerrar el menú si se hace clic fuera de él
+                document.addEventListener('click', evento);
+
+            }
+            else {
+                document.getElementById('div-menu').style.display = 'none';
+                document.removeEventListener('click', evento);
+
+            }
+        }
+        document.getElementById('div-menu').style.display = 'none';
+
+
+        function changeOnMouseOver(isMouseOver, action, aux = "") {
+			const boton = document.getElementById(`boton${action}${aux}`);
+
+			if (boton) {
+				boton.style.transition = 'transform 0.3s ease';
+				boton.style.transform = isMouseOver ? 'scale(1.5)' : 'scale(1)';
+			}
+		}
+
+
+        function showAPI(APIElement) {
+            const section = API_SECTIONS[APIElement];
+            if (!section) return;
+
+            document.getElementById("structInfo").style.textAlign = 'left';
+
+            let html = '';
+            for (const bloque of section.content) {
+                html += `<p class='${bloque.class}'></p>`;
+                for (const funcNum of bloque.funcs) {
+                    html += `
+                <div class='StrucAPIInfo'>
+                    <p class='func${funcNum}'><pre class='desc${funcNum}'></pre></p>
+                </div>
+            `;
+                }
+            }
+
+            document.getElementById('structInfo').innerHTML = html;
+            document.getElementById("botonVolverMenu").style.display = 'flex';
+
+            setLang('');
+        }
+
+
+        function changeTextColorHover(isMouseOver, element) {
+            if (isMouseOver) {
+                element.style.color = '#e69500'; // naranja al pasar
+            } else {
+                element.style.color = 'black';   // negro al salir
+            }
+        }
+
+        function volverAlMenuAPI() {
+            document.getElementById('structInfo').innerHTML = `
+        <p id="InfoText" class="InfoTextAPI1"></p>
+        <p class="InfoTextAPI2"></p>
+    `;
+            document.getElementById('structInfo').style.textAlign = 'center'; // 🔥 RESETEAR CENTRADO
+            document.getElementById('text_title_page').className = 'text_title_page_default_API';
+            document.getElementById('botonVolverMenu').style.display = 'none';
+            setLang('');
+        }
+
+        setLang('');
+
+    </script>
+
+    <script>
+        function toggleLanguage() {
+            const nuevoLang = currentLang === 'ES' ? 'EN' : 'ES';
+            setLang(nuevoLang);
+        }
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botonAPI = document.getElementById('botonHOME');
+            const textHome = document.querySelector('.pagina_principal');
+
+            botonAPI.addEventListener('mouseover', () => {
+                botonAPI.src = './iconos/HOME.gif';
+                botonAPI.style.transform = 'scale(1.5)';
+                if (textHome) {
+                    textHome.style.marginLeft = '10px'; // desplaza el texto
+                    textHome.style.transition = 'margin-left 0.3s ease';
+                }
+            });
+
+            botonAPI.addEventListener('mouseout', () => {
+                botonAPI.src = './iconos/HOME.png';
+                botonAPI.style.transform = 'scale(1)';
+                if (textHome) {
+                    textHome.style.marginLeft = '0';
+                }
+            });
+        });
+    </script>
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,874 @@
+#loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.loader-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+.loader-content {
+    position: relative;
+    background: white;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px black;
+    text-align: center;
+    z-index: 10001;
+}
+
+.loader-content img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+
+
+img[id^="boton"] {
+    width: 25px;
+    height: 25px;
+    margin: 0;
+}
+
+img[id^="boton"] {
+	transition: transform 0.3s ease;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: 0.5s;
+    font-family: Arial, sans-serif;
+}
+
+#id_tabla_datos {
+    overflow-x: auto;
+}
+
+#header_page {
+    font-size: 36px;
+    padding-left: 60px;
+    position: relative;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0px 3px 5px 0px rgba(192, 193, 196, 0.75);
+}
+
+
+
+#footer_page {
+    margin-top: 237.5px;
+    font-size: 16px;
+    /* Ajusta el tamaño de la fuente */
+    padding: 10px 20px;
+    /* Reduce el padding para ahorrar espacio */
+    background-color: white;
+    box-shadow: 0px -3px 5px 0px rgba(99, 98, 98, 0.75);
+    /* Sombra hacia arriba */
+    width: 100%;
+    /* Asegura que ocupe todo el ancho */
+    text-align: center;
+    /* Centra el contenido del footer */
+    position: relative;
+    /* Hace que el footer esté al final del contenido */
+    bottom: 0;
+}
+
+
+
+.navbar {
+    position: absolute;
+    color: black;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    /* Distribuye los elementos con espacio entre ellos */
+    align-items: center;
+    /* Alinea verticalmente los elementos */
+    width: 50px;
+    /* Asegura que el contenedor ocupe todo el ancho disponible */
+}
+
+.text_titulo_app {
+    color: black;
+    padding-top: 50%;
+}
+
+.opciones {
+    position: absolute;
+    left: 50%;
+    color: black;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-around;
+    /* Aumenta el espacio entre los elementos */
+    align-items: center;
+    width: auto;
+    gap: 100%;
+    /* Ajusta el valor según el espacio deseado */
+    /* Ocupa un mayor ancho disponible */
+}
+
+.opciones a {
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: black;
+    display: flex;
+    align-items: center;
+    margin-right: 0px;
+    /* Aumenta el espacio entre las opciones */
+}
+
+
+
+h2 {
+    text-align: center;
+    background-color: #c9af68;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+}
+
+
+/* Estilo específico para el select con id 'seleccioncolumnas' */
+#seleccioncolumnas {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    width: 250px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+}
+
+
+/* Cambio de color al pasar el ratón sobre el select */
+#seleccioncolumnas:hover {
+    border-color: e0f0ff;
+    box-shadow: 0 2px 5px rgba(255, 165, 0, 0.7);
+    /* Sombra naranja al pasar el ratón */
+}
+
+/* Estilo cuando el select está enfocado */
+#seleccioncolumnas:focus {
+    outline: none;
+    /* Elimina el borde azul */
+    border-color: e0f0ff;
+    /* Puedes elegir el color que prefieras para el borde */
+    box-shadow: none;
+    /* Elimina la sombra del foco */
+}
+
+
+/* Estilo específico para las opciones dentro del select */
+#seleccioncolumnas option {
+    padding: 5px 10px;
+    transition: background-color 0.2s ease;
+    background-color: #f9f9f9;
+}
+
+
+/* Cambio de fondo cuando se pasa el ratón sobre una opción */
+#seleccioncolumnas option:hover {
+    background-color: e0f0ff;
+}
+
+/* Estilo para las opciones seleccionadas */
+#seleccioncolumnas option:checked {
+    background-color: rgb(240, 238, 234);
+    color: #2c2c2c;
+}
+
+/* Estilo cuando el select está en modo 'multiple' y se seleccionan varias opciones */
+#seleccioncolumnas option:checked:hover {
+    background-color: rgb(174, 217, 235);
+}
+
+.opcionmenu {
+    list-style: none;
+    background-color: #0e0d0c;
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+#addysearch {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Espaciado entre los elementos */
+}
+
+.botonesSiguienteAnterior {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Espaciado entre los elementos dentro de botonesSiguienteAnterior */
+}
+
+/* Menú lateral */
+#div-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: #fafaf8;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 0 8px 8px 0;
+    padding: 16px;
+    font-size: 1rem;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+}
+
+.text_titulo_menu {
+    background-color: #ddd;
+    border-radius: 8px 8px 0 0;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333; /* texto oscuro */
+    text-align: center;
+}
+
+
+#div_IU_test {
+    display: none;
+    /* Ocultamos el modal por defecto */
+    position: fixed;
+    /* Fijamos la posición */
+    top: 40%;
+    /* Centro vertical */
+    left: 50%;
+    /* Centro horizontal */
+    transform: translate(-50%, -50%);
+    /* Ajusta para que el centro del modal sea el centro de la pantalla */
+    background-color: white;
+    /* Fondo blanco */
+    padding: 20px;
+    /* Espaciado */
+    z-index: 9999;
+    /* Asegura que el modal esté por encima del contenido y del overlay */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Sombra para el modal */
+    width: auto;
+    /* Ajusta el ancho según el contenido */
+    max-width: 90%;
+    /* Evita que el modal sea demasiado ancho */
+    max-height: 90%;
+    /* Evita que el modal sea demasiado alto */
+    overflow: auto;
+    /* Permite scroll si el contenido excede el tamaño del modal */
+}
+
+.opcionmenu {
+    background-color: #e0f0ff; /* azul claro */
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 8px 10px;
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* espacio para icono si se añade */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* sombra ligera */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.opcionmenu:hover {
+    background-color: #cce6ff;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+#languageToggle {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    position: absolute;
+    top: 50%;
+    right: 4rem;
+    /* más a la izquierda que 1rem */
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+    line-height: 40px;
+    height: 40px;
+}
+
+
+#languageToggle img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    /* garantiza que no se deforme la bandera */
+}
+
+
+.div_IU_form,
+.div_IU_test {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+}
+
+.formulario {
+    top: 20px;
+    position: relative;
+    left: 20px;
+}
+
+/* Fondo del formulario */
+.contenidoForm {
+    background: #ebece6;
+    position: relative;
+    z-index: 20;
+    border-radius: 12px;
+    width: 75%;
+    height: 75%;
+    margin: 5% auto;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.contenidoForm span[id^="div_error_"] {
+    color: #d9534f;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+
+
+/* Títulos y encabezados */
+.class_titulo_form {
+    height: 80px;
+    background: #a9b4b3;
+    color: #333;
+    font-size: 1.5rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Estilo para las etiquetas de los campos */
+.contenidoForm label {
+    display: block;
+    /* Hace que las etiquetas estén en bloque */
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    /* Espacio debajo de la etiqueta */
+    color: #333;
+}
+
+/* Estilo para los campos de entrada */
+.contenidoForm input[type="text"],
+.contenidoForm input[type="file"],
+.contenidoForm textarea,
+.contenidoForm select {
+    display: block;
+    /* Asegura que los campos de entrada estén en bloques */
+    padding: 0.8rem;
+    margin: 0.8rem 0;
+    /* Espacio entre los campos */
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 1rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Efectos de hover/focus */
+.contenidoForm input[type="text"]:focus,
+.contenidoForm input[type="file"]:focus,
+.contenidoForm textarea:focus,
+.contenidoForm select:focus {
+    border-color: #e69500;
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(255, 204, 0, 0.8);
+}
+
+/* Espaciado y diseño para los botones */
+#div_boton {
+    margin-top: 20px;
+    /* Espacio antes del botón */
+    display: flex;
+    justify-content: center;
+    /* Centra el botón */
+    align-items: center;
+    /* Centra verticalmente el botón */
+}
+
+/* Estilo para el botón */
+#submit_button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background-color: #a9b4b3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    /* Asegura que el botón ocupe todo el ancho disponible */
+}
+
+/* Hover para el botón */
+#submit_button:hover {
+    background-color: #f7ecc1;
+    transform: translateY(-2px);
+}
+
+
+
+
+/* Estilo de la imagen dentro del botón */
+#div_boton img {
+    height: 25px;
+    width: 25px;
+    margin: 0;
+    /* Elimina cualquier margen extra que pueda estar desplazando la imagen */
+}
+
+/* Enlaces dentro del formulario */
+.contenidoForm a {
+    color: #ffcc00;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contenidoForm a:hover {
+    color: #e6b800;
+}
+
+/* Campos de error */
+/* Solo cuando .errorcampo está presente en los campos */
+/* Solo cuando .errorcampo está presente en los campos */
+.contenidoForm input[type="text"].errorcampo,
+.contenidoForm input[type="file"].errorcampo,
+.contenidoForm select.errorcampo,
+.contenidoForm textarea.errorcampo {
+    border: 2px solid red;
+    background-color: #fce8e8;
+    display: inline-block;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+
+
+.contenidoForm input[type="text"].exitocampo,
+.contenidoForm input[type="file"].exitocampo,
+.contenidoForm select.exitocampo,
+.contenidoForm textarea.exitocampo {
+    border: 2px solid green;
+    background-color: #e8fce8;
+    display: inline-block;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+/* Espaciado y diseño del formulario */
+#formulario {
+    position: relative;
+    padding: 1rem;
+}
+
+/* Estilo para los textos dentro del formulario */
+#textoFormulario {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+    display: block;
+}
+
+.toggle {
+    display: none;
+}
+
+/* Estilos del círculo del interruptor */
+.circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.05),
+        -10px -10px 30px rgba(0, 0, 0, 0.05) inset;
+    top: 50%;
+    left: 0%;
+    transform: translate(10%, -50%);
+    transition: all 0.3s ease;
+}
+
+/* Estilo cuando el checkbox está marcado */
+input[type="checkbox"]:checked+.display label .circle {
+    left: 100%;
+    transform: translate(-110%, -50%);
+    background: #2c2c2c;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5),
+        -10px -10px 30px rgba(0, 0, 0, 0.5) inset;
+}
+
+
+/* Contenedor de las tablas */
+#divTablasDatosEntrega {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabla general */
+table {
+    width: 100%;
+    border-collapse: separate;
+    margin-top: 10px;
+}
+
+#muestradatostabla tr {
+    background: none !important;
+}
+
+#title_page {
+    background-color: #e0f0ff;
+    /* Naranja vibrante */
+    text-align: center;
+    color: #ffffff;
+    border-radius: 5px;
+    margin: 20px auto;
+    padding: 15px;
+    max-width: 90%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#text_title_page {
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Estilos para las celdas de las tablas */
+
+td {
+    background: none;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-family: 'Arial', sans-serif;
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+    /* Solo la primera celda de la última fila recibe el borde redondeado en la esquina inferior izquierda */
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+    /* Solo la última celda de la última fila recibe el borde redondeado en la esquina inferior derecha */
+}
+
+
+
+th {
+    padding: 10px;
+    text-align: left;
+    font-family: 'Arial', sans-serif;
+    background-color: #e0f0ff;
+    color: black;
+    font-weight: bold;
+}
+
+tr:first-child th:first-child {
+    border-top-left-radius: 8px;
+    /* Solo la primera celda de la primera fila de encabezado recibe el borde redondeado en la esquina superior izquierda */
+}
+
+tr:first-child th:last-child {
+    border-top-right-radius: 8px;
+    /* Solo la última celda de la primera fila de encabezado recibe el borde redondeado en la esquina superior derecha */
+}
+
+
+/* Estilo para las filas alternadas */
+tr:nth-child() {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f0e9de;
+}
+
+
+/* Espaciado entre tablas */
+#salidaDatosEntrega,
+#salidaDatosEntregaPersonas {
+    margin-bottom: 20px;
+}
+
+#error_action_modal {
+    text-align: center;
+    position: fixed;
+    z-index: 9999;
+    display: none;
+    border: 2px solid #e69500;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    color: black;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(255, 165, 0, 0.7);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+}
+
+#cerrar_modal {
+    background-color: #e69500;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+#cerrar_modal:hover {
+    background-color: #cf7e00;
+    scale: 1.1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#cerrar_modal:active {
+    background-color: #b96d00;
+    transform: scale(0.95);
+}
+
+#modal_action_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 9998;
+}
+
+
+#structInfo {
+    background-color: #cce6ff;
+    text-align: center;
+    color: #000000;
+    border-radius: 5px;
+    margin: 60px auto 20px auto;
+    /* Aumentado el espacio superior */
+    padding: 15px;
+    max-width: 90%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Estilo empleado para los textos de API y estructuras*/
+.clase1,
+.clase2,
+.clase3,
+.clase4,
+.clase5,
+.clase6,
+.clase7,
+.clase8,
+.clase9,
+.clase10,
+.clase11,
+.clase12,
+.clase13,
+.clase14,
+.clase15,
+.clase16 {
+    font-size: large;
+    font-weight: bold;
+}
+
+.StrucAPIInfo {
+    margin: 10px auto;
+}
+
+.StrucAPIInfo p {
+    padding: 5px 0px;
+    margin-bottom: 5px;
+    background-color: #e69600d3;
+    font-weight: bold;
+
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+
+/* Estilos para pantallas grandes (1920x1080 px) */
+@media screen and (min-width: 1920px) {
+
+    /* Aquí puedes ajustar los márgenes, tamaños de fuente, etc., para pantallas grandes */
+    #formulario {
+        padding: 2rem;
+    }
+
+    #submit_button {
+        padding: 1.5rem 3rem;
+        font-size: 1.2rem;
+    }
+
+    table {
+        font-size: 1.1rem;
+    }
+
+    /* Asegúrate de que el contenido se mantenga centrado */
+    #div_boton {
+        margin-top: 30px;
+    }
+
+}
+
+/* Estilos para pantallas medianas (960x540 px) */
+@media (max-width: 1920px) {
+
+
+    #submit_button {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+
+    table {
+        font-size: 1rem;
+    }
+
+    /* Ajuste de tablas */
+    #divTablasDatosEntrega {
+        padding: 20px;
+    }
+
+}
+
+/* Estilos para pantallas pequeñas (960x540 px a 640x480 px) */
+@media (max-width: 960px) {
+    #div-menu {
+        width: 100%;
+        /* El ancho permanece al 100% */
+        min-height: 55%;
+        /* Opcional: define una altura mínima */
+        height: auto;
+        /* Permite que la altura se ajuste al contenido */
+        align-items: center;
+        /* Alineación vertical (solo relevante si es un contenedor flex) */
+        border-radius: 0 0 8px 8px;
+        /* Bordes redondeados en las esquinas inferiores */
+    }
+
+
+    #div-menu .opcionmenu span {
+        display: block;
+        /* Hace que el texto ocupe todo el espacio disponible */
+        text-align: center;
+        /* Centra el texto dentro de cada opción */
+        cursor: pointer;
+        /* Cambia el cursor al pasar sobre las opciones */
+        padding: 10px 20px;
+        /* Espaciado dentro de las opciones */
+        border-radius: 5px;
+        /* Bordes redondeados opcionales */
+    }
+
+
+
+    .text_titulo_app {
+        display: none;
+    }
+
+
+    .opciones {
+        left: 20%;
+        width: auto;
+        gap: 30%;
+    }
+
+
+    #submit_button {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    /* Centrado y ajuste de los botones */
+    #div_boton {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    /* Ajuste de tabla */
+    table {
+        font-size: 0.9rem;
+    }
+
+    /* Asegurando que las tablas se ajusten correctamente */
+    #divTablasDatosEntrega {
+        padding: 15px;
+    }
+
+    #botonAPI {
+        width: 40px;
+        height: 40px;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+
+}

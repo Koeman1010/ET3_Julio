@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="./css/IU.css" media="screen" />
+
+
+	<!-- JS CORE -->
+	<script type="text/javascript" src="./js_core/Test_class.js"></script>
+	<script type="text/javascript" src="./js_core/Validaciones_class.js"></script>
+	<script type="text/javascript" src="./js_core/ExternalAccess_class.js"></script>
+	<script type="text/javascript" src="./js_core/Dom_class.js"></script>
+	<script type="text/javascript" src="./js_core/Dom_validations_class.js"></script>
+
+	<!-- JS BASE -->
+	<script type="text/javascript" src="./js_base/Entidad_Abstract_class.js"></script>
+
+	<!-- ESTRUCTURAS -->
+	<script type="text/javascript" src="./js_app/project_estructura.js"></script>
+	<script type="text/javascript" src="./js_app/analysis_preparation_estructura.js"></script>
+	<script type="text/javascript" src="./js_app/characteristic_estructura.js"></script>
+
+	<!-- ENTIDADES -->
+	<script type="text/javascript" src="./js_app/project.js"></script>
+	<script type="text/javascript" src="./js_app/analysis_preparation.js"></script>
+	<script type="text/javascript" src="./js_app/characteristic.js"></script>
+
+	<!-- TESTS -->
+	<script type="text/javascript" src="./js_app/tests_project.js"></script>
+	<script type="text/javascript" src="./js_app/tests_analysis_preparation.js"></script>
+	<script type="text/javascript" src="./js_app/tests_characteristic.js"></script>
+
+	<!-- TEXTOS E IDIOMA -->
+	<script type="text/javascript" src="./locale/idioma.js"></script>
+	<script type="text/javascript" src="./js_app/Textos_ES.js"></script>
+	<script type="text/javascript" src="./js_app/Textos_EN.js"></script>
+
+	<!-- DATOS ALUMNO Y OTROS FICHEROS -->
+	<script type="text/javascript" src="./js_app/crearForm.js"></script>
+	<script type="text/javascript" src="./js_app/colocador_valores.js"></script>
+
+	<script type="text/javascript" src="./js_app/Julio_Datos_DavidFernandezVazquez.js"></script>
+
+
+	<!-- LIBRERÍAS EXTERNAS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+
+<body onload="">
+
+	<div id="loader-overlay" style="display: none;">
+		<div class="loader-background"></div>
+		<div class="loader-content">
+			<img src="./iconos/LOADING.gif" alt="Cargando..." />
+			<p>Cargando resultados de los tests...</p>
+		</div>
+	</div>
+
+	<div class="contenidoForm" id='div_IU_test'>
+
+		<div class="" id="contenidoTests">
+			<h1 id="res_estructura_tests"></h1>
+			<p id="resultadodef"></p>
+			<table border="0">
+				<tbody id="tablaresultadostest">
+				</tbody>
+			</table>
+		</div>
+
+		<div class="" id="contenidoPruebas">
+			<h1 id="res_estructura_pruebas"></h1>
+			<p id="resultadoprueba"></p>
+			<div id="div_tabla_prueba">
+				<table id="tabla_prueba" border="0">
+					<tbody id="tablaresultadosprueba">
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="" id="resultadopruebas">
+			<h1 id="res_pruebas"></h1>
+			<p id="resultadotest"></p>
+			<div id="div_resultado_prueba">
+				<table id="resultado_prueba" border="0">
+					<tbody id="salidaresultadosprueba">
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+		<img id="botonBACK" src="./iconos/BACK.png" onclick="validar.cerrar_test();" validar.inicializar(false);"
+			onmouseover="changeOnMouseOver(true, 'BACK');" onmouseout="changeOnMouseOver(false, 'BACK');" />
+	</div>
+
+	<header id='header_page' class='bordeado'>
+
+		<nav class='navbar'>
+			<img id="botonMENU" src="./iconos/MENU.png" onclick="menu_work();"
+				onmouseover="changeOnMouseOver(true, 'MENU');" onmouseout="changeOnMouseOver(false, 'MENU');" />
+		</nav>
+
+		<aside id='div-menu'>
+			<h2 class="text_titulo_menu"></h2>
+			<ol class="no-style">
+				<li class="opcionmenu"><span class="text_project"
+						onclick="validar = new project(); menu_work();"></span></li>
+				<li class="opcionmenu"><span class="text_analysis_prep"
+						onclick="validar = new analysis_preparation(); menu_work();"></span></li>
+				<li class="opcionmenu"><span class="text_characteristic"
+						onclick="validar = new characteristic(); menu_work();"></span>
+				</li>
+			</ol>
+
+		</aside>
+
+		<spam class="text_titulo_app_home"></spam>
+
+		<div class="opciones">
+			<a href="API.html" id="enlaceAPI">
+				<img id="botonAPI" src="./iconos/API.png" alt="API">
+			</a>
+		</div>
+
+
+		<div id="languageToggle" onclick="toggleLanguage()" style="cursor: pointer;">
+			<img id="languageFlag" src="./iconos/United-Kingdom.png" alt="English" />
+			<span id="languageText">ENG</span>
+		</div>
+
+		<img id="botonTEST" src="./iconos/TEST.png" onclick="validar.test_run();"
+			onmouseover="changeOnMouseOver(true, 'TEST');" onmouseout="changeOnMouseOver(false, 'TEST');" />
+
+	</header>
+
+	<section id="workspace" class='bordeado'>
+
+		<div id='title_page' class='bordeado'>
+			<spam id="text_title_page" class=""></spam>
+		</div>
+
+		<div id="id_tabla_datos">
+			<div id="addysearch">
+				<img id="botonADD" src="./iconos/ADD.png" onclick="validar.createForm('ADD');"
+					onmouseover="changeOnMouseOver(true, 'ADD');" onmouseout="changeOnMouseOver(false, 'ADD');" />
+
+				<img id="botonSEARCH" src="./iconos/SEARCH.png" onclick="validar.createForm('SEARCH');"
+					onmouseover="changeOnMouseOver(true, 'SEARCH');" onmouseout="changeOnMouseOver(false, 'SEARCH');" />
+
+
+				<select id="seleccioncolumnas" size="2" multiple>
+				</select>
+
+				<div class="botonesSiguienteAnterior">
+					<img id="botonANT" src="./iconos/ANT.png" onmouseover="changeOnMouseOver(true, 'ANT');"
+						onmouseout="changeOnMouseOver(false, 'ANT');" />
+
+					<span id="PaginaActual"></span>
+					<span id="preposicionPag" class="preposicionPag"></span>
+					<span id="FilasTotales"></span>
+
+					<img id="botonSIG" src="./iconos/SIG.png" onmouseover="changeOnMouseOver(true, 'SIG');"
+						onmouseout="changeOnMouseOver(false, 'SIG');" />
+				</div>
+
+			</div>
+
+			<table id="tabladatosalumnos">
+				<thead id="titulostablacabecera"></thead>
+				<tbody id="muestradatostabla"></tbody>
+			</table>
+
+			<br>
+			<div id="botonVolverMenu"
+				style="display: flex; align-items: center; gap: 10px; justify-content: center; margin-top: 20px;">
+				<img id="botonBACK2" src="./iconos/BACK.png" onclick="validar.cerrar_tabla();"
+					onmouseover="changeOnMouseOver(true, 'BACK','2');"
+					onmouseout="changeOnMouseOver(false, 'BACK','2');" style="cursor: pointer;" />
+				<span onclick="validar.cerrar_tabla();" onmouseover="changeOnMouseOver(true, 'BACK','2');"
+					onmouseout="changeOnMouseOver(false, 'BACK','2');"
+					style="font-size: 1rem; font-weight: bold; cursor: pointer; transition: color 0.3s ease;">
+					Volver al menú principal
+				</span>
+			</div>
+
+
+		</div>
+
+	</section>
+
+	<div class="div_IU_form" id='div_IU_form'>
+
+		<div class="contenidoForm" id="contenidoForm">
+			<div class="class_titulo_form">
+				<spam id="class_contenido_titulo_form" class=""></spam>
+			</div>
+
+			<form id='IU_form' name='IU_form' method='POST' enctype="multipart/form-data" class="formulario">
+
+			</form>
+			<br>
+
+			<img id="botonBACK3" src="./iconos/BACK.png" onclick="validar.cerrar_formulario();"
+				onmouseover="changeOnMouseOver(true, 'BACK','3');" onmouseout="changeOnMouseOver(false, 'BACK','3');" />
+
+		</div>
+
+	</div>
+
+	<div id="divTablasDatosEntrega">
+		<table>
+			<tbody id="salidaDatosEntrega">
+			</tbody>
+		</table>
+		<table>
+			<tbody id="salidaDatosEntregaPersonas">
+			</tbody>
+		</table>
+
+	</div>
+
+	<footer id="footer_page">
+		<spam class="text_titulo_pie"></spam>
+	</footer>
+
+
+
+	<!-- Overlay para acompañar el modal -->
+	<div id="modal_action_overlay"></div>
+
+	<!-- Modal para mostrar los errores de accion -->
+	<div id="error_action_modal">
+		<span id="error_action_msg"></span>
+		<br>
+		<button id="cerrar_modal" onclick="validar.cerrarModalError()">X</button>
+	</div>
+
+	<script type="text/javascript">
+
+		function evento(event) {
+			const menu = document.getElementById('div-menu');
+			const menuToggleButton = document.getElementById('botonMENU');
+
+			// Si el clic no fue dentro del menú ni en el botón para abrir el menú, cerramos el menú
+			if (!menu.contains(event.target) && event.target !== menuToggleButton) {
+				menu_work();
+			}
+		}
+
+		function menu_work() {
+			if (document.getElementById('div-menu').style.display == 'none') {
+				document.getElementById('div-menu').style.display = 'block';
+				// Cerrar el menú si se hace clic fuera de él
+				document.addEventListener('click', evento);
+
+			}
+			else {
+				document.getElementById('div-menu').style.display = 'none';
+				document.removeEventListener('click', evento);
+
+			}
+		}
+
+		document.getElementById('div-menu').style.display = 'none';
+		document.getElementById('div_IU_form').style.display = 'none';
+		document.getElementById('id_tabla_datos').style.display = 'none';
+		document.getElementById('title_page').style.display = 'none';
+		document.getElementById('botonTEST').style.display = 'none';
+		document.getElementById('div_IU_test').style.display = 'none';
+		// poner no visible el modal de error de accion
+		document.getElementById('error_action_modal').style.display = 'none';
+
+
+		document.addEventListener('DOMContentLoaded', () => {
+			cargarDatosEntrega();
+
+			const actions = ['SEARCH', 'ADD', 'BACK', 'MENU', 'API', 'TEST', 'SIG', 'ANT', 'SHOWCURRENT', 'DELETE', 'EDIT', 'FILE'];
+
+			actions.forEach(action => {
+				const botones = document.querySelectorAll(`[id^="boton${action}"]`);
+				botones.forEach(boton => {
+					boton.src = `./iconos/${action}.png`;
+					boton.style.width = '40px';
+					boton.style.height = '40px';
+				});
+			});
+
+			setLang('');
+
+		});
+
+
+
+		function changeOnMouseOver(isMouseOver, action, aux = "") {
+			const boton = document.getElementById(`boton${action}${aux}`);
+
+			if (boton) {
+				boton.style.transition = 'transform 0.3s ease';
+				boton.style.transform = isMouseOver ? 'scale(1.5)' : 'scale(1)';
+			}
+		}
+
+
+		function cargarDatosEntrega() {
+			const salidaDatos = document.getElementById('salidaDatosEntrega');
+
+			if (typeof info_entrega !== "undefined" && Array.isArray(info_entrega)) {
+				salidaDatos.innerHTML = `
+            <tr>
+                <th colspan="2" style="text-align:center; font-size: 1.2rem; padding: 10px;" class="entrega_datos_titulo"></th>
+            </tr>
+            <tr><td><strong class="entrega_delivery"></strong></td><td>${info_entrega[0]}</td></tr>
+            <tr><td><strong class="entrega_dni"></strong></td><td>${info_entrega[1]}</td></tr>
+            <tr><td><strong class="entrega_nombre"></strong></td><td>${info_entrega[2]}</td></tr>
+            <tr><td><strong class="entrega_horas"></strong></td><td>${info_entrega[3]}</td></tr>
+        `;
+			} else {
+				salidaDatos.innerHTML = `
+            <tr>
+                <th colspan="2" style="text-align:center; font-size: 1.2rem; padding: 10px;" class="entrega_datos_titulo"></th>
+            </tr>
+            <tr><td colspan="2" class="entrega_datos_vacios"></td></tr>`;
+			}
+		}
+
+		function mostrarLoader() {
+			const loader = document.getElementById("loader-overlay");
+			if (loader) loader.style.display = "flex";
+		}
+
+		function ocultarLoader() {
+			const loader = document.getElementById("loader-overlay");
+			if (loader) loader.style.display = "none";
+		}
+
+	</script>
+
+	<script>
+		function toggleLanguage() {
+			const nuevoLang = currentLang === 'ES' ? 'EN' : 'ES';
+			setLang(nuevoLang);
+		}
+
+	</script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const botonAPI = document.getElementById('botonAPI');
+
+			botonAPI.addEventListener('mouseover', () => {
+				botonAPI.src = './iconos/API.gif';
+				botonAPI.style.transform = 'scale(1.5)';
+			});
+
+			botonAPI.addEventListener('mouseout', () => {
+				botonAPI.src = './iconos/API.png';
+				botonAPI.style.transform = 'scale(1)';
+			});
+		});
+	</script>
+
+</body>
+
+
+</html>
