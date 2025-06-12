@@ -62,22 +62,21 @@
 
     </header>
 
-    <!-- Botón de Volver al Menú (inicialmente oculto) -->
+
     <div id="botonVolverMenu"
         style="display: none; align-items: center; justify-content: center; gap: 10px; margin-top: 10px;">
 
         <img id="botonBACK3" src="./iconos/BACK.png" onclick="volverAlMenuAPI();"
-            onmouseover="changeOnMouseOver(true, 'BACK', '3'); changeTextColorHover(true, this.nextElementSibling);"
-            onmouseout="changeOnMouseOver(false, 'BACK', '3'); changeTextColorHover(false, this.nextElementSibling);"
+            onmouseover="changeOnMouseOver(true, 'BACK', '3');" onmouseout="changeOnMouseOver(false, 'BACK', '3');"
             style="cursor: pointer;" />
 
-        <span onclick="volverAlMenuAPI();"
-            onmouseover="changeOnMouseOver(true, 'BACK', '3'); changeTextColorHover(true, this);"
-            onmouseout="changeOnMouseOver(false, 'BACK', '3'); changeTextColorHover(false, this);"
+        <span onclick="volverAlMenuAPI();" onmouseover="changeOnMouseOver(true, 'BACK', '3');"
+            onmouseout="changeOnMouseOver(false, 'BACK', '3');"
             style="font-size: 1rem; font-weight: bold; cursor: pointer; transition: color 0.3s ease;">
             Volver al menú principal
         </span>
     </div>
+
 
     <div id="structInfo">
         <p id="InfoText" class="InfoTextAPI1"></p>
@@ -120,13 +119,13 @@
 
 
         function changeOnMouseOver(isMouseOver, action, aux = "") {
-			const boton = document.getElementById(`boton${action}${aux}`);
+            const boton = document.getElementById(`boton${action}${aux}`);
 
-			if (boton) {
-				boton.style.transition = 'transform 0.3s ease';
-				boton.style.transform = isMouseOver ? 'scale(1.5)' : 'scale(1)';
-			}
-		}
+            if (boton) {
+                boton.style.transition = 'transform 0.3s ease';
+                boton.style.transform = isMouseOver ? 'scale(1.5)' : 'scale(1)';
+            }
+        }
 
 
         function showAPI(APIElement) {
@@ -151,15 +150,6 @@
             document.getElementById("botonVolverMenu").style.display = 'flex';
 
             setLang('');
-        }
-
-
-        function changeTextColorHover(isMouseOver, element) {
-            if (isMouseOver) {
-                element.style.color = '#e69500'; // naranja al pasar
-            } else {
-                element.style.color = 'black';   // negro al salir
-            }
         }
 
         function volverAlMenuAPI() {
