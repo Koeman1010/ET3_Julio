@@ -35,28 +35,27 @@ class project extends estructura_project {
 		return valoratributo;
 	}
 
-	validacionesespeciales(atributo, prueba) {
-		const input = document.getElementById(atributo);
-		const valor = input?.value || "";
+	check_special_start_date_project(valor, accion) {
+		// Valida que la fecha sea válida y, si EDIT o ADD, que sea menor que la end_date
+		if (!this.fechaValida(valor)) return false;
 
-		if (atributo === "nuevo_file_project" && prueba === "empty") {
-			return input?.files.length > 0;
+		if (accion === 'ADD' || accion === 'EDIT') {
+			const otra = document.getElementById("end_date_project")?.value || "";
+			return !otra || this.fechasOrdenadas(valor, otra);
 		}
-
-		if (atributo === "start_date_project" || atributo === "end_date_project") {
-			if (prueba === "fechavalida") return this.fechaValida(valor);
-			if (prueba === "fechaSuperior" && atributo === "start_date_project") {
-				const otraFecha = document.getElementById("end_date_project")?.value || "";
-				return !otraFecha || this.fechasOrdenadas(valor, otraFecha);
-			}
-			if (prueba === "fechaInferior" && atributo === "end_date_project") {
-				const otraFecha = document.getElementById("start_date_project")?.value || "";
-				return !otraFecha || this.fechasOrdenadas(otraFecha, valor);
-			}
-		}
-
 		return true;
 	}
+
+	check_special_end_date_project(valor, accion) {
+		if (!this.fechaValida(valor)) return false;
+
+		if (accion === 'ADD' || accion === 'EDIT') {
+			const otra = document.getElementById("start_date_project")?.value || "";
+			return !otra || this.fechasOrdenadas(otra, valor);
+		}
+		return true;
+	}
+
 
 	fechaValida(fecha) {
 		const partes = fecha.split("/");

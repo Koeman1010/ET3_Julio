@@ -6,7 +6,6 @@ class estructura_project extends Entidad_Abstracta {
 		this.def_test_project = Entidad_Abstracta.generar_def_test(this.def_html_project);
 		this.def_test = this.def_test_project;
 	}
-
 }
 
 const estructura_project_def = {
@@ -21,16 +20,12 @@ const estructura_project_def = {
 		"organization_project", "code_project", "acronym_project", "id_sampling_methodology",
 		"description_project", "file_project"
 	],
-
 	attributes: {
 		id_project: {
-			html: {
-				tag: 'input',
-				type: 'text'
-			},
+			html: { tag: 'input', type: 'text' },
 			is_pk: true,
 			is_autoincrement: true,
-			is_not_null: false,
+			is_null: true,
 			validation_rules: {
 				SEARCH: {
 					max_size: [11, "project__id_project__max_size_KO"],
@@ -39,11 +34,8 @@ const estructura_project_def = {
 			}
 		},
 		name_project: {
-			html: {
-				tag: 'input',
-				type: 'text'
-			},
-			is_not_null: true,
+			html: { tag: 'input', type: 'text' },
+			is_null: false,
 			validation_rules: {
 				ADD: {
 					min_size: [15, "project__name_project__min_size_KO"],
@@ -62,21 +54,14 @@ const estructura_project_def = {
 			}
 		},
 		start_date_project: {
-			html: {
-				tag: 'input',
-				type: 'text'
-			},
-			is_not_null: true,
+			html: { tag: 'input', type: 'text' },
+			is_null: false,
 			validation_rules: {
 				ADD: {
 					reg_exp: ["^[0-9]{2}/[0-9]{2}/[0-9]{4}$", "project__start_date_project__format_KO"],
-					personalize: "fechavalida(arrayatributosvalores)",
-					personalize_2: "fechaSuperior(arrayatributosvalores)"
 				},
 				EDIT: {
 					reg_exp: ["^[0-9]{2}/[0-9]{2}/[0-9]{4}$", "project__start_date_project__format_KO"],
-					personalize: "fechavalida(arrayatributosvalores)",
-					personalize_2: "fechaSuperior(arrayatributosvalores)"
 				},
 				SEARCH: {
 					reg_exp: ["^[0-9]{0,2}[/]{0,1}[0-9]{0,2}[/]{0,1}[0-9]{0,4}$", "project__start_date_project__format_SEARCH_KO"]
@@ -84,21 +69,14 @@ const estructura_project_def = {
 			}
 		},
 		end_date_project: {
-			html: {
-				tag: "input",
-				type: "text"
-			},
-			is_not_null: true,
+			html: { tag: 'input', type: 'text' },
+			is_null: false,
 			validation_rules: {
 				ADD: {
 					reg_exp: ["^[0-9]{2}/[0-9]{2}/[0-9]{4}$", "project__end_date_project__format_KO"],
-					personalize: "fechavalida",
-					personalize2: "fechaInferior"
 				},
 				EDIT: {
 					reg_exp: ["^[0-9]{2}/[0-9]{2}/[0-9]{4}$", "project__end_date_project__format_KO"],
-					personalize: "fechavalida",
-					personalize2: "fechaInferior"
 				},
 				SEARCH: {
 					reg_exp: ["^[0-9]{0,2}[/]{0,1}[0-9]{0,2}[/]{0,1}[0-9]{0,4}$", "project__end_date_project__format_SEARCH_KO"]
@@ -106,11 +84,8 @@ const estructura_project_def = {
 			}
 		},
 		responsable_project: {
-			html: {
-				tag: "input",
-				type: "text"
-			},
-			is_not_null: true,
+			html: { tag: 'input', type: 'text' },
+			is_null: false,
 			validation_rules: {
 				ADD: {
 					min_size: [6, "project__responsable_project__min_size_KO"],
@@ -129,11 +104,8 @@ const estructura_project_def = {
 			}
 		},
 		organization_project: {
-			html: {
-				tag: "input",
-				type: "text"
-			},
-			is_not_null: true,
+			html: { tag: 'input', type: 'text' },
+			is_null: false,
 			validation_rules: {
 				ADD: {
 					min_size: [6, "project__organization_project__min_size_KO"],
@@ -152,11 +124,8 @@ const estructura_project_def = {
 			}
 		},
 		code_project: {
-			html: {
-				tag: "input",
-				type: "text"
-			},
-			is_not_null: true,
+			html: { tag: 'input', type: 'text' },
+			is_null: false,
 			validation_rules: {
 				ADD: {
 					min_size: [6, "project__code_project__min_size_KO"],
@@ -175,11 +144,8 @@ const estructura_project_def = {
 			}
 		},
 		acronym_project: {
-			html: {
-				tag: "input",
-				type: "text"
-			},
-			is_not_null: true,
+			html: { tag: 'input', type: 'text' },
+			is_null: false,
 			validation_rules: {
 				ADD: {
 					min_size: [6, "project__acronym_project__min_size_KO"],
@@ -198,11 +164,8 @@ const estructura_project_def = {
 			}
 		},
 		id_sampling_methodology: {
-			html: {
-				tag: "input",
-				type: "text"
-			},
-			is_not_null: true,
+			html: { tag: 'input', type: 'text' },
+			is_null: false,
 			validation_rules: {
 				ADD: {
 					min_size: [1, "project__id_sampling_methodology__min_size_KO"],
@@ -221,12 +184,8 @@ const estructura_project_def = {
 			}
 		},
 		description_project: {
-			html: {
-				tag: "textarea",
-				cols: 100,
-				rows: 5
-			},
-			is_not_null: true,
+			html: { tag: 'textarea', cols: 100, rows: 5 },
+			is_null: false,
 			validation_rules: {
 				ADD: {
 					min_size: [30, "project__description_project__min_size_KO"],
@@ -242,18 +201,11 @@ const estructura_project_def = {
 			}
 		},
 		file_project: {
-			html_por_accion: {
-				ADD: { tag: "input", type: "file" },
-				EDIT: { tag: "input", type: "file" },
-				SEARCH: { tag: "textarea" },
-				SHOW: { tag: "textarea" },
-				SHOWCURRENT: { tag: "textarea" },
-				DELETE: { tag: "textarea" }
-			},
-			is_not_null: false,
+			html: { tag: 'input', type: 'file' },
+			is_null: true,
 			validation_rules: {
 				ADD: {
-					empty: ["empty", "project__nuevo_file_project__empty_KO"],
+					nofile: ["nofile", "project__nuevo_file_project__nofile_KO"],
 					max_size_file: [2000000, "project__nuevo_file_project__max_size_file_KO"],
 					type_file: [
 						[
@@ -287,7 +239,5 @@ const estructura_project_def = {
 				}
 			}
 		}
-
-
 	}
 };

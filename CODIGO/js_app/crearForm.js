@@ -23,38 +23,36 @@ class constructor_form {
 
 
     crearFormAtributo(atributo) {
-        let formulario = document.getElementById("IU_form");
-        let datos = this.def_html.attributes[atributo];
+        const formulario = document.getElementById("IU_form");
+        const datos = this.def_html.attributes[atributo];
+        if (!datos) return;
 
-        if (!datos) {
-            console.warn("No hay datos para el atributo:", atributo);
-            return;
-        }
+        const definicion_html = { ...datos.html };
 
-        // ✅ PRIMERO definimos correctamente el html activo para la acción
-        let definicion_html = datos.html_por_accion?.[this.accion] ?? datos.html;
-
-        if (!definicion_html) {
-            console.warn("No hay html para la acción:", this.accion, "en el atributo:", atributo);
-            return;
+        // 👇 Comprobación específica para campos tipo file
+        if (definicion_html.tag === "input" && definicion_html.type === "file") {
+            if (["SEARCH", "SHOW", "SHOWCURRENT", "DELETE"].includes(this.accion)) {
+                // Lo mostramos como textarea en estas acciones
+                definicion_html.tag = "textarea";
+                delete definicion_html.type; // Elimina type para evitar errores
+                definicion_html.rows = 2;
+                definicion_html.cols = 50;
+            }
         }
 
         if (!definicion_html.tag) {
-            console.warn("No hay tag en el html para:", atributo);
+            console.warn("No hay tag para", atributo);
             return;
         }
 
-
-        datos.html = definicion_html;
-
-
+        // Usa definicion_html directamente sin tocar datos.html global
         switch (definicion_html.tag.toUpperCase()) {
             case "INPUT":
-                this.crearInput(datos, atributo);
+                this.crearInput({ html: definicion_html }, atributo);
                 break;
             case "TEXTAREA":
                 formulario.appendChild(this.crearLabel(atributo));
-                formulario.appendChild(this.crearTextarea(datos, atributo));
+                formulario.appendChild(this.crearTextarea({ html: definicion_html }, atributo));
                 formulario.appendChild(this.crearSpanError(atributo));
                 break;
             case "SELECT":
@@ -75,7 +73,6 @@ class constructor_form {
         const tipo = datos.html?.type || "text";
 
         if (tipo === "file") {
-            // 📌 Si estamos en EDIT, mostramos el archivo actual como textarea
             if (this.accion === "EDIT") {
                 formulario.appendChild(this.crearLabel(atributo));
 
@@ -89,7 +86,6 @@ class constructor_form {
                 formulario.appendChild(textArea);
                 formulario.appendChild(this.crearSpanError(atributo));
 
-                // Icono con enlace al archivo actual
                 let a = document.createElement("a");
                 a.setAttribute("id", "link_" + atributo);
                 a.setAttribute("href", "http://193.147.87.202/ET2/filesuploaded/files_" + atributo + "/");
@@ -108,7 +104,6 @@ class constructor_form {
                 formulario.appendChild(document.createElement("br"));
             }
 
-            // Campo para subir archivo nuevo
             let nuevo = 'nuevo_' + atributo;
             let inputNuevo = document.createElement("input");
             inputNuevo.setAttribute("type", "file");
@@ -121,14 +116,13 @@ class constructor_form {
             formulario.appendChild(this.crearSpanError(nuevo));
 
         } else {
-            // Otro tipo de input normal
             let input = document.createElement("input");
             input.setAttribute("type", tipo);
             input.setAttribute("id", atributo);
             input.setAttribute("name", atributo);
             input.setAttribute("class", "PH_" + atributo);
 
-            if (datos.html?.size) {
+            if ('size' in datos.html) {
                 input.setAttribute("size", datos.html.size);
             }
 
@@ -146,8 +140,8 @@ class constructor_form {
         text.setAttribute("name", atributo);
         text.className = "PH_" + atributo;
         text.setAttribute("type", "text");
-        if (eval(datos["rows"])) text.setAttribute("rows", datos["rows"]);
-        if (eval(datos["cols"])) text.setAttribute("cols", datos["cols"]);
+        if ('rows' in datos) text.setAttribute("rows", datos["rows"]);
+        if ('cols' in datos) text.setAttribute("cols", datos["cols"]);
 
         return text;
     }
@@ -158,13 +152,13 @@ class constructor_form {
         select.setAttribute("name", atributo);
         select.className = "PH_" + atributo;
 
-        if (datos["multiple"]) {
+        if ('multiple' in datos && datos["multiple"]) {
             select.setAttribute("size", 2);
             select.setAttribute("multiple", "");
         }
 
         let opcion = document.createElement("option");
-        if (!datos["multiple"]) {
+        if (!('multiple' in datos && datos["multiple"])) {
             opcion.setAttribute("value", "");
             opcion.setAttribute("id", "SelectDefault_" + atributo);
             opcion.className = "SelectDefault";
@@ -204,16 +198,18 @@ class constructor_form {
     eliminarCampos(accion) {
         console.log("🧹 Eliminando campos con acción:", accion);
 
-        // ⚠️ NO ELIMINAMOS NADA en DELETE ni EDIT
         if (accion === 'EDIT' || accion === 'DELETE') return;
 
         for (let atributo of this.def_html.attributes_list) {
             const datos = this.def_html.attributes[atributo];
-            if (!datos || !datos.html) continue;
+            if (!datos || !('html' in datos)) continue;
 
             switch (accion) {
                 case 'ADD':
-                    if (datos.esAutoIncremental || datos.is_pk || datos.is_autoincrement) {
+                    if ('is_autoincrement' in datos && datos.is_autoincrement) {
+                        this.eliminarCampo(atributo);
+                    }
+                    if ('is_pk' in datos && datos.is_pk) {
                         this.eliminarCampo(atributo);
                     }
                     if (datos.html.tag.toLowerCase() === "input" && datos.html.type === "file") {
@@ -235,10 +231,6 @@ class constructor_form {
         }
     }
 
-
-
-
-
     eliminarCampo(id) {
         const label = document.getElementById('label_' + id);
         if (label) label.remove();
@@ -250,10 +242,8 @@ class constructor_form {
         if (divError) divError.remove();
     }
 
-
     ponernoactivoform(accion) {
         if (accion == "DELETE" || accion == "EDIT" || accion == "SHOWCURRENT") {
-
             let campos = document.forms['IU_form'].elements;
 
             for (let i = 0; i < campos.length; i++) {
@@ -265,15 +255,18 @@ class constructor_form {
     }
 
     requiereReadOnlyEDIT(id) {
-        return (this.def_html[id] != undefined && (this.def_html[id].esAutoIncremental || this.def_html[id].esPK || (this.def_html[id].tag == "INPUT" && this.def_html[id].type == "file")));
+        return (this.def_html[id] != undefined &&
+            ('is_autoincrement' in this.def_html[id] && this.def_html[id].is_autoincrement ||
+                'is_pk' in this.def_html[id] && this.def_html[id].is_pk ||
+                (this.def_html[id].tag == "INPUT" && this.def_html[id].type == "file")));
     }
 
     desactivarCampo(id) {
         let campo = this.def_html.attributes[id];
         if (!campo) return;
 
-        if (campo.html.tag == "SELECT") {
-            if (campo.html.multiple) {
+        if ('html' in campo && campo.html.tag == "SELECT") {
+            if ('multiple' in campo.html && campo.html.multiple) {
                 let onchange = `
                 let options = document.getElementById(id).getElementsByTagName("option");
                 for (option of options) {
@@ -297,10 +290,9 @@ class constructor_form {
 
 
     SearchPH() {
-        //cojer los de PH y ponerles _SEARCH
         let inputs = document.getElementById("IU_form").getElementsByTagName("input");
         let texts = document.getElementById("IU_form").getElementsByTagName("textarea");
-        //Para cada hijo si la clase es PH_ añadirle _SEARCH al final
+
         for (var i = 0; i < inputs.length; i++) {
             var list = inputs[i].classList;
             for (var j = 0; j < list.length; j++) {

@@ -119,7 +119,6 @@ const estructura_analysis_preparation_def = {
             },
             validation_rules: {
                 ADD: {
-                    no_file: "analysis_preparation__nuevo_file_analysis_preparation__empty_KO",
                     file_type: [
                         [
                             "application/pdf",

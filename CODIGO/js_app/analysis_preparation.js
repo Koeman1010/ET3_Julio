@@ -16,14 +16,11 @@ class analysis_preparation extends estructura_analysis_preparation {
 		this.inicializar();
 	}
 
-	validacionesespeciales(atributo, prueba) {
-		if (atributo === "nuevo_file_analysis_preparation" && prueba === "empty") {
-			const input = document.getElementById(atributo);
-			return input?.files.length > 0;
-		}
-
-		return true;
+	check_special_nuevo_file_analysis_preparation(valor, accion) {
+		const input = document.getElementById("nuevo_file_analysis_preparation");
+		return input?.files.length > 0;
 	}
+
 
 	cambiardatosespecialestabla(atributo, valoratributo, i) {
 		if (atributo === "file_analysis_preparation") {

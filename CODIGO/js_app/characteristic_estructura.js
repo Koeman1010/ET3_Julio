@@ -79,7 +79,7 @@ const estructura_characteristic_def = {
             html: {
                 tag: "select"
             },
-            valores: ["Texto", "Numérico", "Fecha", "Booleano"], // <-- ESTO ES OBLIGATORIO
+            valores: ["number", "text", "set"],
             validation_rules: {
                 ADD: {
                     selectValido: ['characteristic__data_type_characteristic__select_incorrecto_KO']
@@ -96,7 +96,7 @@ const estructura_characteristic_def = {
             html: {
                 tag: "select"
             },
-            valores: ["General", "Específica", "Opcional"], // <-- IGUAL AQUÍ
+            valores: ["soil_site", "soil_chem", "soil_bio"],
             validation_rules: {
                 ADD: {
                     selectValido: ['characteristic__category_characteristic__select_incorrecto_KO']
@@ -160,15 +160,7 @@ const estructura_characteristic_def = {
         },
 
         file_characteristic: {
-            html_por_accion: {
-                ADD: { tag: "input", type: "file" },
-                EDIT: { tag: "input", type: "file" },
-                SEARCH: { tag: "textarea" },
-                SHOW: { tag: "textarea" },
-                SHOWCURRENT: { tag: "textarea" },
-                DELETE: { tag: "textarea" }
-            }
-            ,
+            html: { tag: "input", type: "file" },
             validation_rules: {
                 ADD: {
                     no_file: "characteristic__nuevo_file_characteristic__empty_KO",

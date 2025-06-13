@@ -49,9 +49,16 @@ class Dom_validations {
 		if (!input) return false;
 
 		// caso especial: input file vacío en EDIT se considera válido
-		if (accion === "EDIT" && input.tagName === "INPUT" && input.type === "file" && input.files.length === 0) {
+		if (
+			accion === "EDIT" &&
+			input.tagName === "INPUT" &&
+			input.type === "file" &&
+			"files" in input &&
+			input.files.length === 0
+		) {
 			return true;
 		}
+
 
 		let estructura = this.def_test[accion]?.[idCampo];
 		console.log("def_test cargado:", this.def_test);
@@ -102,4 +109,6 @@ class Dom_validations {
 
 		return correcto;
 	}
+
+
 }
